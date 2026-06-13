@@ -139,7 +139,7 @@
         }
         
         .popup-message {
-            font-size: 1.3rem;
+            font-size: 1.8rem;
             color: #34495e;
             margin-bottom: 25px;
             line-height: 1.6;
@@ -182,7 +182,7 @@
             .content { padding: 20px; }
             .popup-content { padding: 25px; }
             .popup-title { font-size: 1.5rem; }
-            .popup-message { font-size: 1.1rem; }
+            .popup-message { font-size: 1.4rem; }
             .popup-icon { font-size: 3rem; }
         }
     </style>
@@ -199,9 +199,7 @@
             <div class="popup-progress">
                 <div class="popup-progress-bar" id="popupProgressBar"></div>
             </div>
-            <div class="popup-countdown" id="popupCountdown">
-                3秒后自动切换
-            </div>
+            <div class="popup-countdown" id="popupCountdown" style="display: none;"></div>
             <div class="popup-counter" id="popupCounter">
                 1 / 20
             </div>
@@ -212,7 +210,7 @@
     <div class="container" id="blessingContainer" style="display: none;">
         <div class="header" id="header">
             <h1 class="title">🎓 毕业祝福</h1>
-            <p class="subtitle">致秋儿姐 · 来自全体同学</p>
+            <p class="subtitle">致秋儿姐</p>
         </div>
         <div class="content">
             <div class="message" id="message">
@@ -380,22 +378,23 @@
         
         // 默认祝福内容
         const defaultMessage = [
-            "亲爱的话秋儿姐：",
+            "🌸🌻🌼 亲爱的话秋儿姐：💌 🌸🌻🌼",
             "",
-            "展信安！",
+            "展信安！✉️🌷",
             "",
-            "今天，我在这里送别秋儿姐。",
+            "今天，我在这里送别秋儿姐。🎓💐",
             "",
-            "秋儿姐你是我大学三年里的一束光，我觉得遇你到是一件非常幸运的事，",
-            "大一啥也不懂，你给我描绘了一个从未见过，却向往已久的世界。",
-            "我们一起去西昌古楼时候的场景一直铭记，我觉得我做过最正确的决定就是去西昌回访。",
+            "秋儿姐你是我大学三年里的一束光✨☀️，我觉得遇你到是一件非常幸运的事🍀💖，",
+            "大一啥也不懂，你给我描绘了一个从未见过，却向往已久的世界🌍🌅。",
+            "我们一起去西昌古楼时候的场景一直铭记🏯🌺，我觉得我做过最正确的决定就是去西昌回访。",
             "",
-            "如今，秋儿姐即将踏上新的征程，我们不舍却也满怀祝福。",
-            "愿你在未来的人生路上，继续如这般热烈、这般温暖，",
-            "所行皆坦途，所求皆如愿。秋儿姐，毕业快乐，生活顺遂！",
+            "如今，秋儿姐即将踏上新的征程🚀🌻，我不舍却也满怀祝福💕。",
+            "愿你在未来的人生路上，继续如这般热烈🔥、这般温暖☀️🌞，",
+            "愿你敢于面对苦难💪，继续阳光向上🌈🌼，",
+            "所行皆坦途🛤️，所求皆如愿⭐✨。秋儿姐，毕业快乐🎉🌸，生活顺遂！🌻☀️",
             "",
             "                                          6月14日",
-            "                                           小家文"
+            "                                           小家文 ❤️"
         ];
         
         // 显示弹窗序列
@@ -428,8 +427,8 @@
             document.getElementById('popupCounter').textContent = `${currentPopupIndex + 1} / ${popupMessages.length}`;
             
             // 重置计时器
+            // 起始倒计时已隐藏
             popupTimer = 3;
-            document.getElementById('popupCountdown').textContent = `${popupTimer}秒后自动切换`;
             
             // 重置进度条
             const progressBar = document.getElementById('popupProgressBar');
@@ -456,7 +455,6 @@
             // 倒计时
             popupInterval = setInterval(() => {
                 popupTimer--;
-                document.getElementById('popupCountdown').textContent = `${popupTimer}秒后自动切换`;
                 
                 if (popupTimer <= 0) {
                     currentPopupIndex++;
